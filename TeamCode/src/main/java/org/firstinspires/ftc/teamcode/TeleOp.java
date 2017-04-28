@@ -4,9 +4,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-import com.qualcomm.robotcore.hardware.Gamepad
+import com.qualcomm.robotcore.hardware.Gamepad;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "3736: TeleOp", group = "TeleOp")
 public class TeleOp extends OpMode {
 
@@ -31,8 +33,7 @@ public class TeleOp extends OpMode {
 	}
 
 	@Override
-	public void init()
-    {
+	public void init() {
 
 		strafe = hardwareMap.dcMotor.get("STR");
 		rightSide = hardwareMap.dcMotor.get("MR");
@@ -44,14 +45,14 @@ public class TeleOp extends OpMode {
 		//ballPosition = 0.1;
 	}
 
-	@Override
-	public void loop()
+		public void loop()
 	{
 		float y1 = gamepad1.left_stick_y;
 		float y2 = gamepad1.right_stick_y;
 		float y3 = gamepad2.left_stick_y;
 		float y4 = gamepad2.right_stick_y;
 		boolean dleft = gamepad1.dpad_left;
+		boolean dright = gamepad1.dpad_right;
 
 		y1 = Range.clip(y1, -1, 1);
 		y2 = Range.clip(y2, -1, 1);
@@ -62,13 +63,24 @@ public class TeleOp extends OpMode {
 		y2 = (float)scaleInput(y2);
 		y3 = (float)scaleInput(y3);
         y4 = (float)scaleInput(y4);
-		dleft = (boolean)dpad_left;
-		dright =
 
 
         leftSide.setPower(y2);
         rightSide.setPower(y1);
-		strafe.setPower(dleft);
+
+		if (gamepad1.dpad_left)
+		{
+			strafe.setPower(-1);
+		}
+		else strafe.setPower(0);
+
+		if (gamepad1.dpad_right)
+		{
+			strafe.setPower(1);
+		}
+		else strafe.setPower(0);
+
+
 
 		//if (gamepad1.a)
 		//{
