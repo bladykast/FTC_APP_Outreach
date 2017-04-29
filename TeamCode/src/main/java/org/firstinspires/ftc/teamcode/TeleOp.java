@@ -39,8 +39,8 @@ public class TeleOp extends OpMode {
 		strafe = hardwareMap.dcMotor.get("STR");
 		rightSide = hardwareMap.dcMotor.get("MR");
 		leftSide = hardwareMap.dcMotor.get("ML");
-		rightSide.setDirection(DcMotor.Direction.REVERSE);
-		leftSide.setDirection(DcMotor.Direction.FORWARD);
+		rightSide.setDirection(DcMotor.Direction.FORWARD);
+		leftSide.setDirection(DcMotor.Direction.REVERSE);
 		strafe.setDirection(DcMotor.Direction.REVERSE);
 		//ball = hardwareMap.servo.get("ball");
 
