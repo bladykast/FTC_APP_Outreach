@@ -5,6 +5,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
@@ -39,7 +40,8 @@ public class TeleOp extends OpMode {
 		rightSide = hardwareMap.dcMotor.get("MR");
 		leftSide = hardwareMap.dcMotor.get("ML");
 		rightSide.setDirection(DcMotor.Direction.REVERSE);
-		leftSide.setDirection(DcMotor.Direction.REVERSE);
+		leftSide.setDirection(DcMotor.Direction.FORWARD);
+		strafe.setDirection(DcMotor.Direction.REVERSE);
 		//ball = hardwareMap.servo.get("ball");
 
 		//ballPosition = 0.1;
@@ -72,9 +74,7 @@ public class TeleOp extends OpMode {
 		{
 			strafe.setPower(-1);
 		}
-		else strafe.setPower(0);
-
-		if (gamepad1.dpad_right)
+		else if (gamepad1.dpad_right)
 		{
 			strafe.setPower(1);
 		}
